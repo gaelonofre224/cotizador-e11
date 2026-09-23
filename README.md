@@ -35,6 +35,26 @@ git pull
 
 Las carpetas aparecen conforme avanza el semestre.
 
+## El proyecto
+
+Todo el grupo construye el mismo sistema: un **cotizador de cruce fronterizo de carga**.
+A cada equipo se le asigna una **variante distinta de las reglas tarifarias**.
+
+El proyecto no es trabajo aparte del temario: **el entregable de cada unidad es el proyecto
+creciendo**, en el paradigma de esa unidad, y siempre en el mismo repositorio.
+
+| Unidad | Entrega | Subsistema | Lenguaje |
+|---|---|---|---|
+| 1 | Semana 3 | Carta del proyecto y repositorio con CI en verde | TypeScript |
+| 2 | Semana 5 | Motor de calculo puro, sin estado mutable | Elixir |
+| 3 | Semana 8 | Modelo de dominio tipado: los estados invalidos no compilan | TypeScript |
+| 4 | Semana 10 | Motor de reglas declarativo: las reglas como datos | Prolog / SQL |
+| 5 | Semana 13 | Procesamiento concurrente de un lote de cotizaciones | Elixir |
+| Cierre | Semana 16 | Integracion y ensayo comparativo con una medicion propia | Todos |
+
+Cada subsistema es de 100 a 200 lineas: pequeno a proposito. Sin el ensayo comparativo no se
+acredita el proyecto.
+
 ## El repositorio del proyecto
 
 El proyecto se trabaja en pareja y el repositorio es de los dos, las cinco unidades.

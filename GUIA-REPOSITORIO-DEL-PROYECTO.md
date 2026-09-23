@@ -8,6 +8,26 @@ de 1000 kg **en verde**, y un **pull request revisado por el compañero e integr
 verde**. Eso es la mitad de la competencia **C1.2**, que se verifica el viernes.
 
 
+## De qué se trata el proyecto
+
+Todo el grupo construye el mismo sistema: un **cotizador de cruce fronterizo de carga**
+(peso, distancia, tipo de mercancía, cuota del puente, recargos). A cada equipo se le asigna
+la semana que entra una **variante distinta de las reglas tarifarias**.
+
+El proyecto no es trabajo aparte del temario: **el entregable de cada unidad es el proyecto
+creciendo**, en el paradigma de esa unidad, y siempre en este mismo repositorio.
+
+| Unidad | Entrega | Subsistema | Lenguaje |
+|---|---|---|---|
+| 1 | Semana 3 | Carta del proyecto y repositorio con CI en verde | TypeScript |
+| 2 | Semana 5 | Motor de cálculo puro, sin estado mutable | Elixir |
+| 3 | Semana 8 | Modelo de dominio tipado: los estados inválidos no compilan | TypeScript |
+| 4 | Semana 10 | Motor de reglas declarativo: las reglas como datos | Prolog / SQL |
+| 5 | Semana 13 | Procesamiento concurrente de un lote de cotizaciones | Elixir |
+| Cierre | Semana 16 | Integración y ensayo comparativo con una medición propia | Todos |
+
+Cada subsistema es de 100 a 200 líneas: pequeño a propósito.
+
 ## Antes de empezar
 
 - Los dos con cuenta de GitHub y sesión iniciada
@@ -20,7 +40,7 @@ git config --global user.email "tu@correo"
 ```
 
 - Decidan quién es **A** y quién es **B**. Hoy A escribe y B revisa; en la unidad 3 se
-  invierte
+  invierte (ver el contrato de pareja)
 
 ## 1 · A crea el repositorio del equipo a partir de la plantilla
 
