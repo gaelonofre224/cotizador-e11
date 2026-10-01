@@ -1,4 +1,4 @@
-// Martes 29 · Las cinco funciones de partida. Todas MUTAN algo.
+// Taller · Las cinco funciones de partida. Todas MUTAN algo.
 // Tu trabajo: escribir cada una en Elixir (ejercicios/lib/sin_mutacion.ex), donde mutar no existe.
 // Antes de escribir, contesta en voz alta con tu pareja: ¿que muta aqui, y quien se entera?
 
