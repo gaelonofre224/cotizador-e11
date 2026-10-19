@@ -2,7 +2,7 @@
 
 Nombre: Gael Onofre García
 Número de control: 23100190
-Equipo: 11
+Equipo: E11
 
 Copia este archivo a `talleres/16-oct/<tu número de control>/respuestas.md` en el repositorio de tu
 equipo, junto con tu `escondida.ex`. Entrega: viernes 16 de octubre, 23:59.
@@ -33,11 +33,11 @@ Llena "Predigo" **antes** de correr `npx tsx escondida.ts`. No borres las predic
 
 **a)** En la línea 4 salió `false` en `original === conP`, y aun así el original cambió. ¿Cómo es
 posible? (dos líneas)
-El operador spread `{ ...e }` hace una copia superficial (shallow copy), creando un nuevo contenedor en el primer nivel pero compartiendo las referencias a objetos anidados como `documentos`. Al mutar `copia.documentos.permiso`, se modifica el objeto que ambos comparten en memoria.
+Se realiza una copia sin embargo se sigue referenciado al antiguo.
 
 **b)** ¿Por qué `registrar` no es una función pura? (una línea)
-No es pura porque depende de y modifica una variable global mutable externa (`vistos`), produciendo efectos secundarios y devolviendo resultados distintos ante la misma entrada.
+Hace referencia a un estado externo y lo modifica
 
 **c)** En tus pruebas de Elixir, la última aserción de cada una revisa que el original sigue igual.
 ¿Por qué en Elixir esa aserción no puede fallar? (dos líneas)
-Porque en Elixir todas las estructuras de datos son estrictamente inmutables por diseño de la máquina virtual (BEAM). Ninguna función puede modificar una estructura existente en memoria; siempre se produce una nueva versión con los cambios.
+En Elixir los datos son inmutables y solo se pueden crear nuevos a partir de funciones
