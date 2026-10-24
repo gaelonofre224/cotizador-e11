@@ -40,9 +40,14 @@ defmodule Cotizador do
     descuento = calcular_descuento(flete_bruto, embarque.peso_kg, reglas.descuento)
     flete = flete_bruto - descuento
     cuota_puente = Map.fetch!(reglas.cuota_puente, embarque.puente)
-    recargo = 0
-    ajuste_minimo = 0
-    total = flete + cuota_puente + recargo + ajuste_minimo
+
+    base = base_para_recargo(reglas.base_recargo, flete, cuota_puente)
+    %{pct: p_recargo, fija: cuota_fija} = Map.fetch!(reglas.recargo, embarque.tipo)
+    recargo = pct(base, p_recargo) + cuota_fija
+
+    subtotal = flete + cuota_puente + recargo
+    total = max(subtotal, reglas.minimo)
+    ajuste_minimo = total - subtotal
 
     %{
       id: embarque.id,
@@ -55,6 +60,10 @@ defmodule Cotizador do
       total: total
     }
   end
+
+  # Base del recargo según la variante (sin if)
+  defp base_para_recargo(:flete, flete, _cuota_puente), do: flete
+  defp base_para_recargo(:subtotal, flete, cuota_puente), do: flete + cuota_puente
 
   # Redondeo de porcentaje al centavo más cercano (las mitades hacia arriba)
   defp pct(monto, p), do: div(monto * p + 50, 100)
