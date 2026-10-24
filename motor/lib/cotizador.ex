@@ -7,6 +7,48 @@ defmodule Cotizador do
     end
   end
 
+  def resumen(lote, reglas) do
+    puentes_cero = Map.new(reglas.cuota_puente, fn {puente, _cuota} -> {puente, 0} end)
+
+    inicial = %{
+      cotizados: 0,
+      rechazados: [],
+      cotizaciones: [],
+      por_puente: puentes_cero
+    }
+
+    resultado =
+      lote
+      |> Enum.map(fn e -> {e, cotizar(e, reglas)} end)
+      |> Enum.reduce(inicial, &acumular/2)
+
+    %{
+      cotizados: resultado.cotizados,
+      rechazados: Enum.reverse(resultado.rechazados),
+      total: sumar_totales(resultado.cotizaciones),
+      por_puente: resultado.por_puente
+    }
+  end
+
+  defp acumular({embarque, {:ok, c}}, acc) do
+    %{
+      acc
+      | cotizados: acc.cotizados + 1,
+        cotizaciones: [c | acc.cotizaciones],
+        por_puente: Map.update!(acc.por_puente, embarque.puente, &(&1 + c.total))
+    }
+  end
+
+  defp acumular({embarque, {:error, motivo}}, acc) do
+    %{acc | rechazados: [{embarque.id, motivo} | acc.rechazados]}
+  end
+
+  # Función recursiva pura a mano sobre lista sin Enum (Receta de las 3 preguntas)
+  # Caso base: lista vacía suma 0
+  # Caso recursivo: cabeza + llamada sobre la cola
+  defp sumar_totales([]), do: 0
+  defp sumar_totales([c | resto]), do: c.total + sumar_totales(resto)
+
   # 1 · peso inválido
   defp validar(%{peso_kg: p}, _reglas) when p <= 0, do: {:error, :peso_invalido}
 
